@@ -1,32 +1,92 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { FormGroup } from '../FormGroup';
+import isEmailValid from '../../utils/isEmailValid';
+import formatPhone from '../../utils/formatPhone';
+import useErrors from '../../hooks/useErrors';
 
 import { Input } from '../Input';
 import { Select } from '../Select';
 import { Button } from '../Button';
+import { FormGroup } from '../FormGroup';
 
 import { ButtonContainer, Form } from './styles';
 
 export function ContactForm({ buttonLabel }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [category, setCategory] = useState('');
+
+  const { setError, removeError, getErrorMessageByFieldName } = useErrors();
+
+  function handleNameChange(event) {
+    setName(event.target.value);
+
+    if (!event.target.value) {
+      setError({ field: 'name', message: 'Nome é obrigatório' });
+    } else {
+      removeError({ field: 'name' });
+    }
+  }
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+
+    if (event.target.value && !isEmailValid(event.target.value)) {
+      setError({ field: 'email', message: 'E-mail inválido' });
+    } else {
+      removeError({ field: 'email' });
+    }
+  }
+
+  function handlePhoneChange(event) {
+    setPhone(formatPhone(event.target.value));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
-    <Form>
-      <FormGroup>
-        <Input placeholder="Nome" />
+    <Form onSubmit={handleSubmit} noValidate>
+      <FormGroup error={getErrorMessageByFieldName('name')}>
+        <Input
+          placeholder="Nome"
+          value={name}
+          onChange={handleNameChange}
+          error={getErrorMessageByFieldName('name')}
+        />
+      </FormGroup>
+
+      <FormGroup error={getErrorMessageByFieldName('email')}>
+        <Input
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={handleEmailChange}
+          error={getErrorMessageByFieldName('email')}
+        />
       </FormGroup>
 
       <FormGroup>
-        <Input placeholder="E-mail" />
+        <Input
+          placeholder="Telefone"
+          value={phone}
+          onChange={handlePhoneChange}
+          minLength={14}
+          maxLength={15}
+        />
       </FormGroup>
 
       <FormGroup>
-        <Input placeholder="Telefone" />
-      </FormGroup>
-
-      <FormGroup>
-        <Select>
+        <Select
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        >
           <option value="none">Categoria</option>
           <option value="instagram">Instagram</option>
+          <option value="discord">Discord</option>
         </Select>
       </FormGroup>
 

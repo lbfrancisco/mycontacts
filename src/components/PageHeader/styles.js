@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   h1 {
-      color: ${({ theme }) => theme.colors.secondary.dark};
+      color: ${({ theme }) => theme.colors.gray[900]};
       margin-top: 8px;
     }
 `;

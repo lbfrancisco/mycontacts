@@ -11,7 +11,7 @@ export const Header = styled.header`
 
   strong {
     font-size: 24px;
-    color: ${({ theme }) => theme.colors.secondary.dark};
+    color: ${({ theme }) => theme.colors.gray[900]};
   }
 
   a {
@@ -81,7 +81,7 @@ export const Card = styled.div`
     }
 
     > span {
-      color: ${({ theme }) => theme.colors.secondary.light};
+      color: ${({ theme }) => theme.colors.gray[200]};
       font-size: 14px;
     }
   }
@@ -118,7 +118,7 @@ export const InputSearchContainer = styled.div`
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     &::placeholder {
-      color: ${({ theme }) => theme.colors.secondary.light};
+      color: ${({ theme }) => theme.colors.gray[200]};
     }
 
   }

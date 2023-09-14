@@ -5,11 +5,12 @@ export const Select = styled.select`
   height: 52px;
   padding: 0 16px;
   background-color: #fff;
-  color: ${({ theme }) => theme.colors.secondary.light};
+  color: ${({ theme }) => theme.colors.gray[200]};
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   outline: none;
   border: 0;
+  appearance: none;
 
   transition: outline 50ms;
 
@@ -18,6 +19,6 @@ export const Select = styled.select`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.secondary.light};
+    color: ${({ theme }) => theme.colors.gray[200]};
   }
 `;

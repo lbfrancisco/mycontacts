@@ -7,11 +7,19 @@ export default {
       main: '#5061FC',
       dark: '#3346F0',
     },
-    secondary: {
-      lighter: '#CCCCCC',
-      light: '#BCBCBC',
-      dark: '#222222',
+    gray: {
+      100: '#CCCCCC',
+      200: '#BCBCBC',
+      900: '#222222',
     },
-    red: '#FC5050',
+    danger: {
+      main: '#FC5050',
+      light: '#F97171',
+      dark: '#F63131',
+    },
+
+    success: {
+      main: '#51CA73',
+    },
   },
 };
