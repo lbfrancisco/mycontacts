@@ -32,23 +32,24 @@ export const Header = styled.header`
   }
 `;
 
-export const ListContainer = styled.div`
+export const ListHeader = styled.header`
   margin-top: 24px;
+  margin-bottom: 16px;
 
-  header {
-    margin-bottom: 8px;
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    background: transparent;
 
-    button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 0;
-      background: transparent;
+    span {
+      font-weight: 700;
+      color: ${({ theme }) => theme.colors.primary.main};
+    }
 
-      span {
-        font-weight: 700;
-        color: ${({ theme }) => theme.colors.primary.main};
-      }
+    img {
+      transform: rotate(${({ orderby }) => (orderby === 'asc' ? '0deg' : '180deg')});
     }
   }
 `;
