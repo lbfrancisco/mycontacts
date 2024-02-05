@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+
 import { useParams } from 'react-router-dom/cjs/react-router-dom';
+
 import { ContactForm } from '../../components/ContactForm';
 import { PageHeader } from '../../components/PageHeader';
-import ContactsService from '../../services/ContactsService';
 import { Loader } from '../../components/Loader';
+import { Button } from '../../components/Button';
+
 import { ErrorContainer } from '../Home/styles';
 
+import ContactsService from '../../services/ContactsService';
+
 import sad from '../../assets/images/sad.svg';
-import { Button } from '../../components/Button';
 
 export function EditContact() {
   const { id } = useParams();
@@ -16,7 +20,7 @@ export function EditContact() {
   const [hasError, setHasError] = useState(false);
   const [contact, setContact] = useState([]);
 
-  async function loadContact() {
+  const loadContact = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -30,11 +34,11 @@ export function EditContact() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [id]);
 
   useEffect(() => {
     loadContact();
-  }, [id]);
+  }, [loadContact]);
 
   function handleTryAgain() {
     loadContact();
